@@ -1,0 +1,4 @@
+﻿rule,M6>B0_seed수,M6>GRADE_seed수,M6v2>B0_seed수,M6v2>M6_seed수,V3>B0_seed수,V3>M6v2_seed수,V3>GRADE_seed수
+R0,49,100,53,70,60,60,100
+R1,56,100,62,71,67,61,100
+R2,0,0,0,73,0,100,0

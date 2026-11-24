@@ -1,0 +1,11 @@
+﻿순서,스크립트,내용
+1,98_*·110_test_fit_apply.py,"전처리·데이터 관문·부도확률(XGBoost)·이득 모형(v1) 학습, 시험 점수"
+2,117_test_blend.py,"LightGBM·CatBoost 학습, 3모형 평균(v2)"
+3,124_v3_cv.py → 125_v3_fit_apply.py,v3 교차검증 판정 → 최종 학습·시험 점수
+4,121_team_metrics.py,"과제 정의·기회풀 Sharpe, 구간, 강건성"
+5,119·116·111,이수용·우수사례 1·3·현금흐름 지표
+6,126_quality_checks.py,대표성·중도절단·경쟁위험 누적부도·보정 검정
+7,127_oot.py 2015 / 2016,시간 외 재학습·채점
+8,128_prof_methods.py,듀레이션·OLS·롱-숏·모먼트·레짐·림보·직함
+9,131_bond_mbs.py,"채권·MBS 형식 평가(수익률·스프레드·HPR 잣대·CPR/PSA·CMO·듀레이션·시장 스프레드, FRED 수집)"
+10,129_final_figs.py → 130_final_report.py,그림 → 본 보고서 HTML(PDF 변환)

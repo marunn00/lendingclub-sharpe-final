@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.pyc
+/lending_club*.csv
+/rejected_*.csv
+*.parquet
+산출물/최종보고서/최종보고서.html
+산출물/최종보고서/활용가이드.html
+산출물/최종보고서/oot_*/

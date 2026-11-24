@@ -1,0 +1,46 @@
+﻿보고서,쪽,잣대,항목,값,승인율,비고
+LendingClub Sharpe 최종보고서,1,T1,전체 승인,-0.114,100.0%,연수익 0.11% 변동성 11.01% 부도 19.5%
+LendingClub Sharpe 최종보고서,1,T1,전체 거절(국채),0,0.0%,국채 1.36%
+LendingClub Sharpe 최종보고서,1,T1,과제 기본 흐름(부도확률 컷오프),0.062,29.5%,부도 6.1%
+LendingClub Sharpe 최종보고서,1,T1,선행연구(JDQS) 재현,0.118,26.6%,부도 7.2%
+LendingClub Sharpe 최종보고서,1,T1,제안 모형(S8),0.147,23.8%,연수익 1.85% 변동성 3.27% 부도 8.0%
+LendingClub Sharpe 최종보고서,1,T1,Oracle(부도 완전 예측),1.001,80.5%,
+LendingClub Sharpe 최종보고서,2,T1,시험 부도율,0.1952,,3장 표(테스트 확정 대출 744608건)
+LendingClub Sharpe 최종보고서,2,T1,평균 만기매칭 국채금리,0.0136,,3장 표
+LendingClub Sharpe 최종보고서,6,T1,제안 모형 95% 구간 하한,0.144,23.8%,대출 부트스트랩 300회
+LendingClub Sharpe 최종보고서,6,T1,제안 모형 95% 구간 상한,0.151,23.8%,대출 부트스트랩 300회
+LendingClub Sharpe 최종보고서,6,T1,제안 모형 검증 SR,0.15,23.8%,
+LendingClub Sharpe 최종보고서,8,T1,제안 모형 금액 가중,0.148,23.8%,
+LendingClub Sharpe 최종보고서,9,T1_OOT_2017-2020,제안 모형,0.001,6.4%,학습 2016년 이전 762059건 시험 237140건
+LendingClub Sharpe 최종보고서,9,T1_OOT_2017-2020,부도확률 컷오프,-0.118,,
+LendingClub Sharpe 최종보고서,9,T1_OOT_2017-2020,전체 승인,-0.339,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,1,T2,M4_TwoStage(주력),0.128,32.5%,1_MATURED_REF 467157건 CO 9.22%
+LENDINGCLUB CREDIT MODEL FINAL REPORT,1,T2,전부 승인,0.068,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,1,T2_4_평탄,전부 승인,-0.024,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_2_순수만기,M4_TwoStage,0.167,36.4%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_2_순수만기,전부 승인,0.126,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_3_완결,M4_TwoStage,0.179,38.6%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_3_완결,전부 승인,0.144,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_4_평탄,M4_TwoStage,0.11,24.3%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf0,M4_TwoStage,0.189,,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf1,M4_TwoStage,0.117,,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf2,M4_TwoStage,0.042,,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf3,M4_TwoStage,-0.035,,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf0,전부 승인,0.174,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf1,전부 승인,0.069,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf2,전부 승인,-0.035,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_rf3,전부 승인,-0.14,100.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_관리비1pct,M4_TwoStage,0.053,,실측 국채 rf
+LENDINGCLUB CREDIT MODEL FINAL REPORT,4,T2_관리비1pct,전부 승인,-0.037,100.0%,본문 서술 값
+LENDINGCLUB CREDIT MODEL FINAL REPORT,2,T2_OOT_2016-2017,M4_MeanVar_Util(자유 임계값),0.033,4.3%,적합 ≤2015
+LENDINGCLUB CREDIT MODEL FINAL REPORT,2,T2_OOT_2016-2017,M4_TwoStage(자유 임계값),0.03,,적합 ≤2015
+LENDINGCLUB CREDIT MODEL FINAL REPORT,2,T2_OOT_2016-2017,M2_PD_Decile_Mix(승인 30%),0.04,30.0%,
+LENDINGCLUB CREDIT MODEL FINAL REPORT,3,T2_OOT_2016-2017,전부 승인,-0.117,100.0%,
+Test Data 최종보고서 이수용,7,이수용_국채,RAROC 모델(최종),0.414,17.0%,부도 7.6% 연수익 6.42% 평가 467101건
+Test Data 최종보고서 이수용,7,이수용_국채,A등급만,0.439,19.3%,부도 5.6% 연수익 5.28%
+Test Data 최종보고서 이수용,7,이수용_국채,전부 승인,0.283,100.0%,부도 16.2% 연수익 6.44%
+Test Data 최종보고서 이수용,7,이수용_국채,PD 낮은 순 20%,0.436,20.0%,
+Test Data 최종보고서 이수용,7,이수용_rf0,RAROC 모델(최종),0.485,17.0%,
+Test Data 최종보고서 이수용,7,이수용_rf1,RAROC 모델(최종),0.415,17.0%,
+Test Data 최종보고서 이수용,7,이수용_rf2,RAROC 모델(최종),0.344,17.0%,
+Test Data 최종보고서 이수용,7,이수용_rf3,RAROC 모델(최종),0.269,17.0%,
