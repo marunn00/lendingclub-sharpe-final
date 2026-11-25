@@ -1,0 +1,84 @@
+[     5s] lending_club_2020_train.csv rows 1116156 |total_pymnt − (P+I+Lf+R)| 중앙값 0.0011
+[   136s] seed 0 130 s
+[   247s] seed 1 241 s
+[   315s] seed 2 310 s
+[   370s] seed 3 364 s
+[   430s] seed 4 425 s
+[   475s] seed 5 469 s
+[   534s] seed 6 528 s
+[   590s] seed 7 585 s
+[   662s] seed 8 656 s
+[   709s] seed 9 703 s
+[   822s] seed 10 816 s
+[  1047s] seed 11 1041 s
+[  1259s] seed 12 1253 s
+[  1473s] seed 13 1467 s
+[  1561s] seed 14 1555 s
+[  1645s] seed 15 1639 s
+[  1705s] seed 16 1699 s
+[  1778s] seed 17 1772 s
+[  1863s] seed 18 1857 s
+[  1947s] seed 19 1942 s
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+   step                        model  rmse_train  rmse_valid  rmse_hold  r2_hold  mz_hold    SR26  SR26_q25  SR26_q75  반복   과적합간격  직전대비_점검RMSE  직전대비_SR26  점검RMSE_직전보다_작은_비율  SR26_직전보다_큰_비율
+0     0                      평균만(기준)      0.1129      0.1135     0.1122   0.0000   0.4373 -0.0566   -0.0637   -0.0508  20  0.0006          NaN        NaN                NaN             NaN
+1     1                    가격·약정 OLS      0.1117      0.1122     0.1112   0.0190   0.9362  0.0136    0.0020    0.0234  20  0.0005      -0.0010     0.0702               1.00            1.00
+2     2                    +신용이력 OLS      0.1096      0.1103     0.1094   0.0430   0.8860  0.0671    0.0472    0.0830  20  0.0008      -0.0017     0.0535               1.00            1.00
+3     3                      +재무 OLS      0.1095      0.1110     0.1095   0.0421   0.8416  0.0702    0.0520    0.0844  20  0.0016       0.0000     0.0032               0.45            0.65
+4     4              +시장·시기 = 전체 OLS      0.1077      0.1088     0.1075   0.0770   0.9092  0.1019    0.0806    0.1166  20  0.0012      -0.0019     0.0317               1.00            1.00
+5     5               Ridge(α 검증 선택)      0.1077      0.1088     0.1076   0.0770   0.9117  0.1021    0.0874    0.1166  20  0.0012       0.0001     0.0002               0.45            0.40
+6     6               Lasso(α 검증 선택)      0.1078      0.1088     0.1076   0.0783   0.9344  0.0999    0.0842    0.1161  20  0.0010       0.0000    -0.0023               0.75            0.75
+7     7      2단계(부도확률×조건부 이득, Ridge)      0.1073      0.1086     0.1076   0.0799   0.9060  0.0877    0.0785    0.1068  20  0.0013       0.0000    -0.0122               0.75            0.15
+8     8              비선형(HistGB 1단계)      0.0959      0.1091     0.1078   0.0755   0.9250  0.0979    0.0871    0.1098  20  0.0132       0.0001     0.0102               0.50            0.75
+9     9  v3-lite(HistGB 2단계 + 비율 순위)      0.0949      0.1087     0.1075   0.0807   0.8953  0.0931    0.0771    0.1101  20  0.0139      -0.0002    -0.0048               0.65            0.35
+seed            9.50
+p_total        83.00
+p05            13.00
+p_bonf          2.00
+lasso_nz       78.50
+ridge_alpha     0.74
+lasso_alpha     0.00
+                  model             C  auc_valid  auc_hold  auc_sign_hold    SR26  nonzero  반복
+0          로지스틱(정규화 없음)  1000000.0000     0.7063    0.7028         0.6250  0.0480     83.0  20
+1      로지스틱 L2(C 검증 선택)        0.0032     0.7092    0.7046         0.6246  0.0363     83.0  20
+2      로지스틱 L1(C 검증 선택)        0.1000     0.7108    0.7052         0.6238  0.0465     51.5  20
+3     선형 SVM 소프트마진(무가중)        0.0001     0.6208    0.6163         0.7375  0.0964     83.0  20
+4  선형 SVM 소프트마진(|z| 가중)        0.0316     0.6334    0.6289         0.7328  0.1003     83.0  20
+5  로지스틱 L2(z>0 목표, 대조군)       10.0000     0.6311    0.6266         0.7471  0.0971     83.0  20
+{'lam_median': 1.5670882108530058, 'lam_theory_median': 1.16917595568535, 'q_foc_median': 0.2485, 'SR_foc': 0.08638060230257885, 'SR_rank26': 0.09309715318489932, 'SR_rank_qmatch': 0.08494450226094616, 'diff_median': 0.0019523690691219259, 'win_vs_rank26': 0.55, 'win_vs_qmatch': 0.75}
+           측       |d|     대출   맞음비율    평균z  평균절대z    부도율     비중
+0  거절측(τ 미만)    0~0.25   8956  0.167  0.008  0.053  0.139  0.112
+1  거절측(τ 미만)  0.25~0.5   8793  0.186  0.005  0.055  0.154  0.110
+2  거절측(τ 미만)     0.5~1  14287  0.242 -0.004  0.062  0.198  0.179
+3  거절측(τ 미만)       1~2  18485  0.462 -0.032  0.070  0.250  0.231
+4  거절측(τ 미만)      2 이상   8679  0.620 -0.084  0.103  0.340  0.108
+5  승인측(τ 이상)    0~0.25   7798  0.856  0.011  0.051  0.125  0.097
+6  승인측(τ 이상)  0.25~0.5   5609  0.870  0.013  0.052  0.115  0.070
+7  승인측(τ 이상)     0.5~1   5487  0.884  0.020  0.055  0.106  0.069
+8  승인측(τ 이상)       1~2   1842  0.901  0.029  0.061  0.097  0.023
+9  승인측(τ 이상)      2 이상     64  0.859  0.014  0.087  0.172  0.001
+   집단             모형  학습_평균잔차  학습_잔차SD  점검_평균잔차  점검_잔차SD  대출_점검
+0  완납      1단계 Ridge   0.0396   0.0338   0.0397   0.0351   3232
+1  완납  2단계(부도확률×조건부)   0.0398   0.0331   0.0400   0.0327   3232
+2  부도      1단계 Ridge  -0.1642   0.1454  -0.1608   0.1513    768
+3  부도  2단계(부도확률×조건부)  -0.1644   0.1449  -0.1616   0.1510    768
+[  1948s] done 1942 s

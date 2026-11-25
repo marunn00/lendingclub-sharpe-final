@@ -45,3 +45,18 @@ cnt, mpos, nm = R.month_boot(dte); bd = R.t1_boot(dte, m_l, cnt, mpos, nm) - R.t
 print("시험: v3 SR %.4f(승인 26.0%%) | 1계조건 SR %.4f 승인율 %.3f 부도율 %.3f σ %.4f | 이론 λ %.3f" % (sv, sl, m_l.mean(), dte.dflt[m_l].mean(), sgl, sl / (2 * sgl)))
 print("차이(1계조건 − v3) %.4f, 발급월 블록 95%% 구간 [%.4f, %.4f], 1계조건 우세 비율 %.3f" % (sl - sv, *np.percentile(bd, [2.5, 97.5]), (bd > 0).mean()))
 print("승인 집합 겹침(자카드) %.3f" % ((m_v & m_l).sum() / (m_v | m_l).sum()))
+
+# ---- 보고서 v4용 저장: λ 곡선(학습 OOF가 선택 근거, 시험 곡선은 사후 참고), 요약, 같은 승인율의 비율 순위와 비교
+import json
+TB = ROOT / "산출물" / "최종보고서" / "표"; TR.rename(columns={"lam": "λ", "SR": "학습OOF_Sharpe", "sigma": "학습OOF_σ", "q": "승인율"}).to_csv(TB / "FOC_학습곡선.csv", index=False, encoding="utf-8-sig")
+ts = []
+for lam in LAM[::2]:
+    mk = lam_mask(dte.exp_gain_v3.to_numpy(), dte.risk_v3.to_numpy(), dte.rf.to_numpy(), lam); s_, g_ = sr(dte, mk); ts.append(dict(λ=lam, 시험_Sharpe=s_, 시험_σ=g_, 승인율=float(mk.mean())))
+pd.DataFrame(ts).to_csv(TB / "FOC_시험곡선_사후참고.csv", index=False, encoding="utf-8-sig")
+m_q = R.sel(R.order_rank(dte.score_V3.to_numpy())[1], float(m_l.mean())); s_q, _ = sr(dte, m_q); bq = R.t1_boot(dte, m_l, cnt, mpos, nm) - R.t1_boot(dte, m_q, cnt, mpos, nm)
+json.dump(dict(lam_star=lam_s, 학습_SR_foc=float(TR.SR[i]), 학습_승인율_foc=float(TR.q[i]), 학습_이론_lam=float(TR.SR[i] / (2 * TR.sigma[i])), 학습_SR_v3_q26=float(v3_tr),
+               시험_SR_v3_q26=float(sv), 시험_SR_foc=float(sl), 시험_승인율_foc=float(m_l.mean()), 시험_부도율_foc=float(dte.dflt[m_l].mean()), 시험_σ_foc=float(sgl), 시험_이론_lam=float(sl / (2 * sgl)),
+               차이_foc_v3=float(sl - sv), 차이_구간=[float(x) for x in np.percentile(bd, [2.5, 97.5])], foc_우세비율=float((bd > 0).mean()), 자카드=float((m_v & m_l).sum() / (m_v | m_l).sum()),
+               시험_SR_순위_같은승인율=float(s_q), 차이_foc_순위_같은승인율=float(sl - s_q), 차이_같은승인율_구간=[float(x) for x in np.percentile(bq, [2.5, 97.5])], 시험_부도율_v3_q26=float(dte.dflt[m_v].mean())),
+          open(TB / "FOC_요약.json", "w"), ensure_ascii=False, indent=1)
+print("saved FOC tables")

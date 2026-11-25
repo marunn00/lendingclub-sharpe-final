@@ -12,7 +12,7 @@ h2 { font-size: 15pt; color: #fff; background: #1F4E79; padding: 5px 12px; margi
 h3 { font-size: 12pt; color: #1F4E79; border-bottom: 1.5px solid #1F4E79; padding-bottom: 2px; margin: 14px 0 6px 0; }
 h4 { font-family: "Apple SD Gothic Neo", sans-serif; font-size: 10.8pt; margin: 10px 0 4px 0; color: #222; }
 p { margin: 3px 0; }
-.L1, .L2, .L3 { display: flex; margin: 3px 0; } .L1 > span, .L2 > span, .L3 > span { flex: 0 0 auto; width: 1.4em; }
+.L1, .L2, .L3 { display: flex; margin: 3px 0; } .L1 > .tx, .L2 > .tx, .L3 > .tx { flex: 1 1 0; width: auto; min-width: 0; } .L1 > span, .L2 > span, .L3 > span { flex: 0 0 auto; width: 1.4em; }
 .L1 { font-weight: 600; font-family: "Apple SD Gothic Neo", sans-serif; margin-top: 7px; } .L2 { padding-left: 1.1em; } .L3 { padding-left: 2.4em; font-size: 9.8pt; color: #333; }
 .nt { font-size: 9pt; color: #444; padding-left: 1.1em; }
 .tbl, .fig { margin: 8px 0 10px 0; break-inside: avoid; }
@@ -51,7 +51,7 @@ small { font-size: 85%; color: #555; }
 
 class Numbering:
     """표·그림 번호를 등장 순서로 매기고, 그림은 figdir 의 PNG를 문서 안에 넣는다."""
-    def __init__(self, figdir): self.tn, self.fn, self.figdir, self.rec = 0, 0, figdir, []
+    def __init__(self, figdir, prefix=""): self.tn, self.fn, self.figdir, self.rec, self.px = 0, 0, figdir, [], prefix
     def table(self, title, head, rows, unit=None, note=None, src=None, widths=None, cls=""):
         self.rec.append((self.tn + 1, title, unit, note, src, head, [r[0] if isinstance(r, tuple) else r for r in rows]))
         self.tn += 1; h = "".join(f"<th{f' style=width:{w}' if widths else ''}>{c}</th>" for c, w in zip(head, widths or [None] * len(head)))
@@ -59,11 +59,11 @@ class Numbering:
         for r in rows:
             cells, rc = (r if isinstance(r, tuple) else (r, ""))
             body += f"<tr class='{rc}'>" + "".join(f"<td>{c}</td>" for c in cells) + "</tr>"
-        return (f"<div class='tbl {cls}'><div class='tt'><span>&lt;표 {self.tn}&gt; {title}</span><span class='unit'>{'(단위: ' + unit + ')' if unit else ''}</span></div>"
+        return (f"<div class='tbl {cls}'><div class='tt'><span>&lt;표 {self.px}{self.tn}&gt; {title}</span><span class='unit'>{'(단위: ' + unit + ')' if unit else ''}</span></div>"
                 f"<table><thead><tr>{h}</tr></thead><tbody>{body}</tbody></table>" + (f"<div class='note'>주) {note}</div>" if note else "") + (f"<div class='src'>자료: {src}</div>" if src else "") + "</div>")
     def figure(self, file, title, note=None, src=None, w="100%", h=None):
         self.fn += 1; b = base64.b64encode((self.figdir / file).read_bytes()).decode()
-        return (f"<div class='fig'><div class='ft'>[그림 {self.fn}] {title}</div><img src='data:image/png;base64,{b}' style='max-width:{w}{";max-height:" + h if h else ""}'>" + (f"<div class='note'>주) {note}</div>" if note else "")
+        return (f"<div class='fig'><div class='ft'>[그림 {self.px}{self.fn}] {title}</div><img src='data:image/png;base64,{b}' style='max-width:{w}{";max-height:" + h if h else ""}'>" + (f"<div class='note'>주) {note}</div>" if note else "")
                 + (f"<div class='src'>자료: {src}</div>" if src else "") + "</div>")
 
 def plain(s):
@@ -71,20 +71,20 @@ def plain(s):
     import html, re
     return html.unescape(re.sub(r"<[^>]+>", "", re.sub(r"<br\s*/?>", " / ", str(s)))).strip()
 
-def dump_tables(num, outdir):
+def dump_tables(num, outdir, idx_name="표_색인.csv"):
     """보고서에 실린 표를 보이는 그대로 CSV로 저장: 표NN_제목.csv + 표_색인.csv(번호·제목·단위·열·행수·주·자료)."""
     import csv, re
     outdir.mkdir(parents=True, exist_ok=True); idx = []
     for n, title, unit, note, src, head, rows in num.rec:
-        fn = f"표{n:02d}_" + re.sub(r"[^0-9A-Za-z가-힣]+", "_", plain(title)).strip("_")[:40] + ".csv"
+        fn = f"표{num.px}{n:02d}_" + re.sub(r"[^0-9A-Za-z가-힣]+", "_", plain(title)).strip("_")[:40] + ".csv"
         with open(outdir / fn, "w", newline="", encoding="utf-8-sig") as f:
             w = csv.writer(f); w.writerow([plain(c) for c in head]); w.writerows([[plain(c) for c in r] for r in rows])
-        idx.append(dict(표=n, 제목=plain(title), 단위=unit or "", 열=" | ".join(plain(c) for c in head), 행수=len(rows), 파일=fn, 주=plain(note or ""), 자료=plain(src or "")))
-    with open(outdir / "표_색인.csv", "w", newline="", encoding="utf-8-sig") as f:
+        idx.append(dict(표=f"{num.px}{n}", 제목=plain(title), 단위=unit or "", 열=" | ".join(plain(c) for c in head), 행수=len(rows), 파일=fn, 주=plain(note or ""), 자료=plain(src or "")))
+    with open(outdir / idx_name, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=list(idx[0])); w.writeheader(); w.writerows(idx)
     return idx
 
-def L1(t): return f"<p class='L1'><span>□</span>{t}</p>"
-def L2(t): return f"<p class='L2'><span>○</span>{t}</p>"
-def L3(t): return f"<p class='L3'><span>-</span>{t}</p>"
+def L1(t): return f"<p class='L1'><span>□</span><span class='tx'>{t}</span></p>"
+def L2(t): return f"<p class='L2'><span>○</span><span class='tx'>{t}</span></p>"
+def L3(t): return f"<p class='L3'><span>-</span><span class='tx'>{t}</span></p>"
 def note(t): return f"<p class='nt'>※ {t}</p>"

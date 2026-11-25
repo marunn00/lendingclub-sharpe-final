@@ -1,0 +1,5 @@
+﻿순서,스크립트,내용
+11,132_lam_rule_experiment.py,"FOC 규칙: λ 학습 CV, 시험 1회, 표/FOC_*.csv"
+12,134_small_sample_lab.py,"소표본 사다리 · Ridge · Lasso · 분류 · 임계값 · FOC 20회(약 30분), 표/랩_*.csv, fig/lab*.png"
+13,136_state_space.py,"상태공간(local level) 대 마르코프, 표/교수_H_*.csv"
+14,135_report_v4.py,이 보고서 HTML(PDF 변환)과 표/보고서표/표F*.csv
